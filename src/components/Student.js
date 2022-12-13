@@ -2,13 +2,21 @@ import React from "react";
 import "./StudentList.js";
 import "./StudentList.css";
 
-const Student = ({name, email}) => {
+import PropTypes from "prop-types";
+
+const Student = (props) => {
   return (
     <ul>
-      <li>Nickname: {name}</li>
-      <li>Email: {email}</li>
+      <li>Nickname: {props.name}</li>
+      <li>Email: {props.email}</li>
     </ul>
   );
 };
+
+Student.propTypes = {
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+};
+
 
 export default Student;

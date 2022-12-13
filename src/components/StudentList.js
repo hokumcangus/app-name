@@ -2,6 +2,7 @@
 import React from "react";
 import "./StudentList.css";
 import Student from "./Student";
+import PropTypes from "prop-types";
 
 const StudentList = (props) => {
   const studentComponents = props.students.map((student, index) => {
@@ -19,5 +20,10 @@ const StudentList = (props) => {
     </section>
   );
 };
-
+StudentList.propTypes = {
+  studentData: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  }))
+};
 export default StudentList;
