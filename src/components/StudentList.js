@@ -1,29 +1,38 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
+import PropTypes from "prop-types";
 import "./StudentList.css";
 import Student from "./Student";
-import PropTypes from "prop-types";
-
-const StudentList = (props) => {
-  const studentComponents = props.students.map((student, index) => {
+const StudentList = ({ studentData, onUpdateStudent }) => {
+  const componentClass = "student-list";
+  const studentComponents = studentData.map((student) => {
     return (
-      <li key={index}>
-        <Student name={student.nameData} email={student.emailData}></Student>
+      <li key={student.id}>
+        <Student
+          name={student.nameData}
+          email={student.emailData}
+          id={student.id}
+          isPresent={student.present}
+          onUpdateStudent={onUpdateStudent}
+        />
       </li>
     );
   });
-
   return (
-    <section>
-      <h2>Student List</h2>
-      <ul>{studentComponents}</ul>
-    </section>
+    <article>
+      <h2 className="student-list__header yellow-big">Student List</h2>
+      <ul className={componentClass}>{studentComponents}</ul>
+    </article>
   );
 };
 StudentList.propTypes = {
-  studentData: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  }))
+  students: PropTypes.arrayOf(
+    PropTypes.shape({
+      nameData: PropTypes.string.isRequired,
+      emailData: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      present: PropTypes.bool,
+      onUpdateStudent: PropTypes.func.isRequired,
+    })
+  ).isRequired,
 };
 export default StudentList;

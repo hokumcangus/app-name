@@ -12,3 +12,10 @@ font-style: oblique;
     list-style-type: square;
   }
   
+  .green {
+    background-color: rgb(19, 160, 31);
+  }
+
+  .red {
+    background-color: rgb(190, 25, 25);
+  }
